@@ -1,4 +1,9 @@
-
+"""
+Command line interface code for product.
+Demonstrates basic ability for Spotify Web API to fetch
+and return playlist tracks, then feed those songs along 
+with a prompt into a Gemini API call. 
+"""
 
 
 import spotipy
@@ -60,7 +65,7 @@ def main():
         print()
     print("Playlist fetched sucessfully!")
 
-    post_information = input("Give a short diescription of what your post is about: ")
+    post_information = input("Give a short description of what your post is about: ")
 
     print("")
     print("Processing your dream post...")
@@ -72,7 +77,7 @@ def main():
                             "Don't use any songs out side of the provided songs unless the user asks for suggestions not on the playlist."
                             "Captions should be gnerated based on the description of the post or music if its relevent to the description"
                             "Format of JSON is top songs you found  are in order and songs are matched with their reasoning in order so that if you turned it into a list it would be indexable so song[0] would be the song to reasoning[0]"
-                             "JSON has 3 keys named songs (stores the top 3 song recommendations), reasoning(store matching explenations), and captions(have captions ready for users in case they want them)")
+                            "JSON has 3 keys named songs (stores the top 3 song recommendations), reasoning(store matching explenations), and captions(have captions ready for users in case they want them)")
     
     config = types.GenerateContentConfig(
     system_instruction=system_instructions,
@@ -151,7 +156,7 @@ def main():
         if len(songs) != len(reasoning):
             print("Exiting...")
             sys.exit("Mismatch between number of songs. Google Gemini did not match number of questions with number of reasoning")
- 
+
     print("YOUR TOP SONG CHOICES HAVE BEEN CALCULATED! 𝄞⨾𓍢ִ໋")
 
     for i in range(len(songs)):
@@ -171,7 +176,7 @@ def main():
     print("")
 
     found_a_song = input("Were you able to find a song for your post? (yes/no): ")
-     
+    
     #error handling in case they didn't answer yes or no
     while found_a_song != 'no' and found_a_song != 'yes':
         print("ERROR: you didn't answer with yes or no (please enter in lower case and as show)")
